@@ -11,6 +11,7 @@ public class Player3DController : MonoBehaviour
     [SerializeField] LayerMask groundLayer;
     public Animator animator;
     CharacterController characterController;
+    public GameObject healingVFX;
 
     float moveAmount;
     Vector3 moveDirection;
@@ -68,6 +69,10 @@ public class Player3DController : MonoBehaviour
         {
             animator.SetTrigger("Attack");
         }
+        if (Input.GetButtonDown("Fire2"))
+        {
+            animator.SetTrigger("Death");
+        }
     }
 
     void CheckGroundStatus()
@@ -80,6 +85,14 @@ public class Player3DController : MonoBehaviour
         else
         {
             isGrounded = false;
+        }
+        if (healingVFX != null)
+        {
+            healingVFX.SetActive(false);
+        }
+        if (healingVFX != null)
+        {
+            healingVFX.SetActive(true);
         }
     }
 }
